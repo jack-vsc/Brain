@@ -1,0 +1,29 @@
+# Mesmo baseline e mesmo orçamento, mas a pergunta vem ANTES da história:
+# a rede sabe o que acompanhar enquanto lê. Comparação controlada com gru_baseline.toml.
+[run]
+name = "gru_qbefore"
+seed = 1
+data_dir = "data/generated/mvp"
+
+[model]
+type = "gru"
+emb_dim = 128
+hidden = 384
+layers = 2
+dropout = 0.1
+question_position = "before"
+
+[train]
+batch_size = 64
+grad_accum = 1
+lr = 2e-3
+weight_decay = 0.01
+max_steps = 12000
+warmup_steps = 500
+eval_every = 500
+early_stop_patience = 8
+max_minutes = 45.0
+amp = "auto"
+device = "auto"
+min_free_vram_mb = 400
+vram_margin_mb = 256

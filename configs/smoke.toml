@@ -1,0 +1,18 @@
+# Smoke test: modelo pequeno, poucos passos. Serve para validar o pipeline, não para medir aprendizado.
+[run]
+name = "smoke"
+seed = 1
+data_dir = "data/generated/smoke"
+
+[model]
+emb_dim = 32
+hidden = 64
+layers = 1
+
+[train]
+batch_size = 32
+max_steps = 60
+warmup_steps = 10
+eval_every = 30
+log_every = 20
+max_minutes = 5.0
