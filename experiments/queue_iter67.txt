@@ -1,0 +1,13 @@
+# Iteração 6 (passos adaptativos) e 7 (porta de esquecimento), 3 seeds cada
+train configs/b_adaptive.toml 1
+evaluate runs/b_adaptive-s1/best.pt
+train configs/b_gated.toml 1
+evaluate runs/b_gated-s1/best.pt
+train configs/b_adaptive.toml 2
+evaluate runs/b_adaptive-s2/best.pt
+train configs/b_gated.toml 2
+evaluate runs/b_gated-s2/best.pt
+train configs/b_adaptive.toml 3
+evaluate runs/b_adaptive-s3/best.pt
+train configs/b_gated.toml 3
+evaluate runs/b_gated-s3/best.pt
