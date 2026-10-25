@@ -1,0 +1,36 @@
+# Fase 4 (H2): aprendizado sequencial localizacao → posse → correcoes.
+# Mesma arquitetura da iteração 2 e o mesmo orçamento para todas as estratégias:
+# 3 blocos × 3000 passos, batch 64 (com replay, 25% do batch vem da memória a partir do 2º bloco).
+[run]
+name = "continual"
+seed = 1
+data_dir = "data/generated/continual"
+
+[model]
+type = "fastweight_gru"
+emb_dim = 128
+hidden = 336
+layers = 2
+dropout = 0.1
+mem_heads = 4
+mem_dim = 48
+read_hops = 3
+question_position = "after"
+
+[train]
+batch_size = 64
+lr = 2e-3
+warmup_steps = 300
+
+[continual]
+strategy = "none"   # none | uniform | category | ewc | episodic | episodic_ewc
+blocks = ["localizacao", "posse", "correcoes"]
+steps_per_block = 3000
+buffer_size = 2000  # exemplos guardados (uniform, category, episodic)
+replay_fraction = 0.25
+ewc_lambda = 1000.0
+fisher_batches = 20
+data_seed = 4321
+n_train = 6000      # episódios de treino por bloco
+n_test = 500        # episódios de teste por bloco
+sleep_steps = 300   # uniform_sleep: últimos passos de cada bloco só com a memória (10%)
