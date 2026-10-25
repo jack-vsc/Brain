@@ -1,0 +1,7 @@
+# Baseline Mamba-2 (do zero): varredura de lr com seed 1 (escolha só pela validação)
+train configs/b_mamba2.toml 1 run.name="b_mamba2_lr5e-4" train.lr=5e-4
+evaluate runs/b_mamba2_lr5e-4-s1/best.pt
+train configs/b_mamba2.toml 1 run.name="b_mamba2_lr1e-3" train.lr=1e-3
+evaluate runs/b_mamba2_lr1e-3-s1/best.pt
+train configs/b_mamba2.toml 1 run.name="b_mamba2_lr2e-3" train.lr=2e-3
+evaluate runs/b_mamba2_lr2e-3-s1/best.pt

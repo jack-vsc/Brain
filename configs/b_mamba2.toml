@@ -1,0 +1,25 @@
+# Baseline de recorrência moderna (direção 2): blocos estilo Mamba-2/SSD, escritos do zero.
+# 6 blocos, d_model 192, estado 32, cabeças de 48 → ~1,45 M parâmetros. lr escolhido por varredura.
+[run]
+name = "b_mamba2"
+seed = 1
+data_dir = "data/generated/mvp2"
+
+[model]
+type = "mamba2"
+d_model = 192
+layers = 6
+d_state = 32
+expand = 2
+head_dim = 48
+dropout = 0.1
+question_position = "after"
+
+[train]
+batch_size = 64
+lr = 1e-3
+max_steps = 8000
+warmup_steps = 500
+eval_every = 500
+early_stop_patience = 8
+max_minutes = 120.0
