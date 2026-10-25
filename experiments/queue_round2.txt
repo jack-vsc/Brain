@@ -1,0 +1,85 @@
+# Rodada 2 (itens 1, 2, 4 e 6). Duas filas podem ler este arquivo ao mesmo tempo (trava por execução).
+# --- A: iterações 8 (tempo) e 9 (minGRU), 3 seeds
+train configs/b_time.toml 1
+evaluate runs/b_time-s1/best.pt
+train configs/b_mingru.toml 1
+evaluate runs/b_mingru-s1/best.pt
+train configs/b_time.toml 2
+evaluate runs/b_time-s2/best.pt
+train configs/b_mingru.toml 2
+evaluate runs/b_mingru-s2/best.pt
+train configs/b_time.toml 3
+evaluate runs/b_time-s3/best.pt
+train configs/b_mingru.toml 3
+evaluate runs/b_mingru-s3/best.pt
+# --- A: Fase 4, estratégias novas e o Transformer, 3 seeds
+continual configs/continual.toml episodic_diverse 1
+continual configs/continual.toml uniform_sleep 1
+continual configs/continual_tf.toml none 1
+continual configs/continual_tf.toml uniform 1
+continual configs/continual.toml episodic_diverse 2
+continual configs/continual.toml uniform_sleep 2
+continual configs/continual_tf.toml none 2
+continual configs/continual_tf.toml uniform 2
+continual configs/continual.toml episodic_diverse 3
+continual configs/continual.toml uniform_sleep 3
+continual configs/continual_tf.toml none 3
+continual configs/continual_tf.toml uniform 3
+# --- B: curva de escala, seed 1 (0,5 M e 5 M; 8 mil e 24 mil passos; nossa e Transformer)
+train configs/sc_fw_0.5m.toml 1
+evaluate runs/sc_fw_0.5m_8k-s1/best.pt
+train configs/sc_tf_0.5m.toml 1
+evaluate runs/sc_tf_0.5m_8k-s1/best.pt
+train configs/sc_fw_5m.toml 1
+evaluate runs/sc_fw_5m_8k-s1/best.pt
+train configs/sc_tf_5m.toml 1
+evaluate runs/sc_tf_5m_8k-s1/best.pt
+train configs/sc_fw_0.5m.toml 1 run.name="sc_fw_0.5m_24k" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/sc_fw_0.5m_24k-s1/best.pt
+train configs/sc_tf_0.5m.toml 1 run.name="sc_tf_0.5m_24k" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/sc_tf_0.5m_24k-s1/best.pt
+train configs/sc_fw_5m.toml 1 run.name="sc_fw_5m_24k" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/sc_fw_5m_24k-s1/best.pt
+train configs/sc_tf_5m.toml 1 run.name="sc_tf_5m_24k" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/sc_tf_5m_24k-s1/best.pt
+# --- C: curva de escala, seeds 2 e 3
+train configs/sc_fw_0.5m.toml 2
+evaluate runs/sc_fw_0.5m_8k-s2/best.pt
+train configs/sc_tf_0.5m.toml 2
+evaluate runs/sc_tf_0.5m_8k-s2/best.pt
+train configs/sc_fw_5m.toml 2
+evaluate runs/sc_fw_5m_8k-s2/best.pt
+train configs/sc_tf_5m.toml 2
+evaluate runs/sc_tf_5m_8k-s2/best.pt
+train configs/sc_fw_0.5m.toml 2 run.name="sc_fw_0.5m_24k" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/sc_fw_0.5m_24k-s2/best.pt
+train configs/sc_tf_0.5m.toml 2 run.name="sc_tf_0.5m_24k" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/sc_tf_0.5m_24k-s2/best.pt
+train configs/sc_fw_5m.toml 2 run.name="sc_fw_5m_24k" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/sc_fw_5m_24k-s2/best.pt
+train configs/sc_tf_5m.toml 2 run.name="sc_tf_5m_24k" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/sc_tf_5m_24k-s2/best.pt
+train configs/b_fastweight_hops.toml 2 run.name="b_fastweight_hops_x3" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/b_fastweight_hops_x3-s2/best.pt
+train configs/b_transformer.toml 2 run.name="b_transformer_lr5e-4_x3" train.lr=5e-4 train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/b_transformer_lr5e-4_x3-s2/best.pt
+train configs/sc_fw_0.5m.toml 3
+evaluate runs/sc_fw_0.5m_8k-s3/best.pt
+train configs/sc_tf_0.5m.toml 3
+evaluate runs/sc_tf_0.5m_8k-s3/best.pt
+train configs/sc_fw_5m.toml 3
+evaluate runs/sc_fw_5m_8k-s3/best.pt
+train configs/sc_tf_5m.toml 3
+evaluate runs/sc_tf_5m_8k-s3/best.pt
+train configs/sc_fw_0.5m.toml 3 run.name="sc_fw_0.5m_24k" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/sc_fw_0.5m_24k-s3/best.pt
+train configs/sc_tf_0.5m.toml 3 run.name="sc_tf_0.5m_24k" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/sc_tf_0.5m_24k-s3/best.pt
+train configs/sc_fw_5m.toml 3 run.name="sc_fw_5m_24k" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/sc_fw_5m_24k-s3/best.pt
+train configs/sc_tf_5m.toml 3 run.name="sc_tf_5m_24k" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/sc_tf_5m_24k-s3/best.pt
+train configs/b_fastweight_hops.toml 3 run.name="b_fastweight_hops_x3" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/b_fastweight_hops_x3-s3/best.pt
+train configs/b_transformer.toml 3 run.name="b_transformer_lr5e-4_x3" train.lr=5e-4 train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/b_transformer_lr5e-4_x3-s3/best.pt

@@ -1,0 +1,24 @@
+# Curva de escala (item 1): Transformer baseline com ~5 M parâmetros. lr 5e-4 (o melhor em 1,5 M);
+# não foi revarrido em cada tamanho, o que fica registrado como limitação.
+[run]
+name = "sc_tf_5m_8k"
+seed = 1
+data_dir = "data/generated/mvp2"
+
+[model]
+type = "transformer"
+d_model = 320
+layers = 5
+heads = 8
+ff = 960
+dropout = 0.1
+question_position = "after"
+
+[train]
+batch_size = 64
+lr = 5e-4
+max_steps = 8000
+warmup_steps = 500
+eval_every = 500
+early_stop_patience = 8
+max_minutes = 240.0

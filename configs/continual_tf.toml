@@ -1,0 +1,32 @@
+# Fase 4 com o Transformer baseline (mesma montagem e orçamento de configs/continual.toml),
+# para comparar quem esquece menos. lr 5e-4: o melhor do Transformer na Fase 2b.
+[run]
+name = "continual_tf"
+seed = 1
+data_dir = "data/generated/continual"
+
+[model]
+type = "transformer"
+d_model = 192
+layers = 4
+heads = 4
+ff = 576
+dropout = 0.1
+question_position = "after"
+
+[train]
+batch_size = 64
+lr = 5e-4
+warmup_steps = 300
+
+[continual]
+strategy = "none"
+blocks = ["localizacao", "posse", "correcoes"]
+steps_per_block = 3000
+buffer_size = 2000
+replay_fraction = 0.25
+ewc_lambda = 1000.0
+fisher_batches = 20
+data_seed = 4321
+n_train = 6000
+n_test = 500
