@@ -1,0 +1,26 @@
+# Iteração 2 — rodada limpa após corrigir o crash do cuDNN e acelerar a regra delta.
+# Varredura de lr com seed 1; a escolha usa SÓ a validação.
+
+# Transformer (b_transformer-s1 com lr=1e-3 já existe e é válido)
+train configs/b_transformer.toml 1 run.name="b_transformer_lr3e-4" train.lr=3e-4
+evaluate runs/b_transformer_lr3e-4-s1/best.pt
+train configs/b_transformer.toml 1 run.name="b_transformer_lr5e-4" train.lr=5e-4
+evaluate runs/b_transformer_lr5e-4-s1/best.pt
+train configs/b_transformer.toml 1 run.name="b_transformer_lr2e-3" train.lr=2e-3
+evaluate runs/b_transformer_lr2e-3-s1/best.pt
+
+# GRU
+train configs/b_gru.toml 1
+evaluate runs/b_gru-s1/best.pt
+train configs/b_gru.toml 1 run.name="b_gru_lr1e-3" train.lr=1e-3
+evaluate runs/b_gru_lr1e-3-s1/best.pt
+
+# Memória rápida (iteração 1)
+train configs/b_fastweight.toml 1
+evaluate runs/b_fastweight-s1/best.pt
+train configs/b_fastweight.toml 1 run.name="b_fastweight_lr1e-3" train.lr=1e-3
+evaluate runs/b_fastweight_lr1e-3-s1/best.pt
+
+# Memória rápida + 3 passos internos de leitura (iteração 2)
+train configs/b_fastweight_hops.toml 1
+evaluate runs/b_fastweight_hops-s1/best.pt
