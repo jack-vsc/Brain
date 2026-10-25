@@ -1,0 +1,12 @@
+# Iteração 7b: porta de esquecimento iniciada quase sem esquecer, 3 seeds
+train configs/b_gated_slow.toml 1
+evaluate runs/b_gated_slow-s1/best.pt
+train configs/b_gated_slow.toml 2
+evaluate runs/b_gated_slow-s2/best.pt
+train configs/b_gated_slow.toml 3
+evaluate runs/b_gated_slow-s3/best.pt
+# Mamba-2: seeds 2 e 3 com o lr escolhido pela validação na varredura (1e-3; val 0,681 contra 0,678 e 0,658)
+train configs/b_mamba2.toml 2 run.name="b_mamba2_lr1e-3" train.lr=1e-3
+evaluate runs/b_mamba2_lr1e-3-s2/best.pt
+train configs/b_mamba2.toml 3 run.name="b_mamba2_lr1e-3" train.lr=1e-3
+evaluate runs/b_mamba2_lr1e-3-s3/best.pt
