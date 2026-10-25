@@ -1,0 +1,17 @@
+# Fase 2: completar o GRU "pergunta depois" (caiu por erro de CUDA no passo 4000)
+train configs/gru_baseline.toml 1
+# Avaliar os dois GRUs da Fase 2 também no test_long (split de treino idêntico)
+evaluate runs/gru_qafter-s1/best.pt data/generated/mvp2
+evaluate runs/gru_qbefore-s1/best.pt data/generated/mvp2
+
+# Fase 2b: pilotos para estimar custo antes do treino longo
+pilot configs/b_transformer.toml 300
+pilot configs/b_fastweight.toml 300
+
+# Fase 2b: comparação controlada (mesmos dados, mesmos passos), seed 1
+train configs/b_gru.toml 1
+evaluate runs/b_gru-s1/best.pt
+train configs/b_transformer.toml 1
+evaluate runs/b_transformer-s1/best.pt
+train configs/b_fastweight.toml 1
+evaluate runs/b_fastweight-s1/best.pt

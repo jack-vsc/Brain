@@ -1,0 +1,17 @@
+# Fase 2b: mesmos splits do MVP (mesma seed e parâmetros, arquivos idênticos)
+# mais test_long, com histórias de 10–16 eventos por projeto (treino: 3–8).
+[data]
+name = "mvp2"
+seed = 1234
+n_train = 20000
+n_val = 2000
+n_test_iid = 2000
+n_test_comp = 2000
+n_test_long = 2000
+long_min_events = 10
+long_max_events = 16
+questions_per_episode = 4
+heldout_pair_fraction = 0.15
+
+[output]
+dir = "data/generated/mvp2"
