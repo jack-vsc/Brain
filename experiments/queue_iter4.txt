@@ -1,0 +1,6 @@
+# Iteração 4: memória episódica com reinstauração + ablação sem reinstauração
+pilot configs/b_episodic.toml 200
+train configs/b_episodic.toml 1
+evaluate runs/b_episodic-s1/best.pt
+train configs/b_episodic.toml 1 run.name="b_episodic_noreinstate" model.reinstate=false
+evaluate runs/b_episodic_noreinstate-s1/best.pt
