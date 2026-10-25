@@ -1,0 +1,3 @@
+# Iteração 3: separação de padrões (chaves esparsas) + familiaridade
+train configs/b_fastweight_sep.toml 1
+evaluate runs/b_fastweight_sep-s1/best.pt

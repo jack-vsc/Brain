@@ -1,0 +1,27 @@
+# 3 seeds dos finalistas (configuração escolhida pela validação, seed 1 já existe)
+train configs/b_gru.toml 2 run.name="b_gru_lr1e-3" train.lr=1e-3
+evaluate runs/b_gru_lr1e-3-s2/best.pt
+train configs/b_gru.toml 3 run.name="b_gru_lr1e-3" train.lr=1e-3
+evaluate runs/b_gru_lr1e-3-s3/best.pt
+train configs/b_transformer.toml 2 run.name="b_transformer_lr5e-4" train.lr=5e-4
+evaluate runs/b_transformer_lr5e-4-s2/best.pt
+train configs/b_transformer.toml 3 run.name="b_transformer_lr5e-4" train.lr=5e-4
+evaluate runs/b_transformer_lr5e-4-s3/best.pt
+train configs/b_fastweight.toml 2 run.name="b_fastweight_lr1e-3" train.lr=1e-3
+evaluate runs/b_fastweight_lr1e-3-s2/best.pt
+train configs/b_fastweight.toml 3 run.name="b_fastweight_lr1e-3" train.lr=1e-3
+evaluate runs/b_fastweight_lr1e-3-s3/best.pt
+train configs/b_fastweight_hops.toml 2
+evaluate runs/b_fastweight_hops-s2/best.pt
+train configs/b_fastweight_hops.toml 3
+evaluate runs/b_fastweight_hops-s3/best.pt
+train configs/b_fastweight_sep.toml 2
+evaluate runs/b_fastweight_sep-s2/best.pt
+train configs/b_fastweight_sep.toml 3
+evaluate runs/b_fastweight_sep-s3/best.pt
+
+# Orçamento 3x (24 mil passos): a diferença diminui com mais treino?
+train configs/b_transformer.toml 1 run.name="b_transformer_lr5e-4_x3" train.lr=5e-4 train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/b_transformer_lr5e-4_x3-s1/best.pt
+train configs/b_fastweight_hops.toml 1 run.name="b_fastweight_hops_x3" train.max_steps=24000 train.warmup_steps=1500 train.early_stop_patience=100
+evaluate runs/b_fastweight_hops_x3-s1/best.pt
