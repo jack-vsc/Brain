@@ -1,0 +1,11 @@
+# Dados mínimos para o smoke test (segundos para gerar).
+[data]
+name = "smoke"
+seed = 7
+n_train = 400
+n_val = 80
+n_test_iid = 80
+n_test_comp = 80
+
+[output]
+dir = "data/generated/smoke"

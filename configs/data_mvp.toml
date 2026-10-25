@@ -1,0 +1,14 @@
+# Micromundo do MVP. Valores omitidos usam os padrões de GeneratorConfig
+# (src/brain/data/generator.py), que também ficam registrados no manifest.json.
+[data]
+name = "mvp"
+seed = 1234
+n_train = 20000
+n_val = 2000
+n_test_iid = 2000
+n_test_comp = 2000
+questions_per_episode = 4
+heldout_pair_fraction = 0.15
+
+[output]
+dir = "data/generated/mvp"
