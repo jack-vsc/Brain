@@ -1,0 +1,14 @@
+# Iteração 5: reinstauração sobre a iteração 2, com ablação limpa e 3 seeds
+pilot configs/b_reinstate.toml 200
+train configs/b_reinstate.toml 1
+evaluate runs/b_reinstate-s1/best.pt
+train configs/b_reinstate.toml 1 run.name="b_reinstate_off" model.reinstate=false
+evaluate runs/b_reinstate_off-s1/best.pt
+train configs/b_reinstate.toml 2
+evaluate runs/b_reinstate-s2/best.pt
+train configs/b_reinstate.toml 2 run.name="b_reinstate_off" model.reinstate=false
+evaluate runs/b_reinstate_off-s2/best.pt
+train configs/b_reinstate.toml 3
+evaluate runs/b_reinstate-s3/best.pt
+train configs/b_reinstate.toml 3 run.name="b_reinstate_off" model.reinstate=false
+evaluate runs/b_reinstate_off-s3/best.pt
